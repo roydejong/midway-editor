@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Midway Editor</title>
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,400i,700,700i" rel="stylesheet">
+
+        <link rel="stylesheet" href="lib/midway-toolbar.css">
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+            html, body, .note {
+                min-height: 100vh !important;
+            }
+            h1 {
+                font-family: 'Droid Sans', sans-serif;
+                font-weight: 400;
+                font-size: 40px;
+            }
+            body {
+                font-family: 'Droid Serif', sans-serif;
+                font-weight: 400;
+            }
+            p {
+                margin-top: 10px;
+                --x-height-multiplier: 0.35;
+                --baseline-multiplier: 0.179;
+                letter-spacing: .01rem;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 19px;
+                line-height: 1.58;
+                letter-spacing: -.003em;
+                color: #111;
+            }
+            .note {
+                padding: 50px 0;
+            }
+            .note-inner {
+                max-width: 740px;
+                padding-left: 20px;
+                padding-right: 20px;
+                margin: 0 auto;
+            }
+            .midway-edit {
+                outline: none;
+            }
+            .ghost-node {
+                color: #999;
+
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <article class="note">
+            <div class="note-inner midway-edit">
+                <!--<h1>Post title</h1>-->
+                <!--<p>It's all about how, when my life got turned upside down, I said "fuck it — let's build some shit".</p>-->
+                <!--<p>Let's face it. Sometimes life deals you a shit hand. Things don't work out the way you wanted them to. Sometimes things are within your control, but often they are not. And when that happens, you're given a chance. Are you going to sit around and feel sorry for yourself? Or are you going to get up and do something to make it better?</p>-->
+                <!--<p>The answer to that question seems so fucking simple. Get up! Do something about it! Make something of yourself! Find a way to be happy!</p>-->
+                <!--<p>But when you feel heartbroken, sad, betrayed and lost sometimes it's easier to just stay in bed and sleep.</p>-->
+            </div>
+        </article>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+        <script src="lib/midway-editor.js"></script>
+        <script>
+        $(document).ready(function () {
+            Midway.edit('.midway-edit');
+        });
+        </script>
+
+    </body>
+</html>
