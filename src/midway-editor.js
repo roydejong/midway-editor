@@ -223,6 +223,17 @@ var MidwayEditor = function ($rootDiv) {
         }
     };
 
+    this.restoreSelection = function (storedSelection) {
+        console.log('trying to restore a selection', storedSelection);
+
+        var windowSelection = window.getSelection();
+        windowSelection.removeAllRanges();
+
+        for (var i = 0; i < storedSelection.rangeCount; i++) {
+            windowSelection.addRange(storedSelection.getRangeAt(i));
+        }
+    };
+
     this.caretGetPos = function () {
         var element = this.$rootDiv[0];
         var caretOffset = 0;
