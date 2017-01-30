@@ -1,0 +1,87 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+.midway-toolbar {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .midway-toolbar.active {
+    display: inline-block;
+    visibility: visible;
+    transition: top 75ms ease-out, left 75ms ease-out;
+    animation: pop-upwards 180ms forwards linear; }
+    .midway-toolbar.active.virgin-toolbar {
+      /** This toolbar is brand new, prevent transitioning its initial position, as it would then jump in from the top left corner **/
+      transition: none; }
+@keyframes pop-upwards {
+  0% {
+    transform: matrix(0.97, 0, 0, 1, 0, 12);
+    opacity: 0; }
+  20% {
+    transform: matrix(0.99, 0, 0, 1, 0, 2);
+    opacity: 0.7; }
+  40% {
+    transform: matrix(1, 0, 0, 1, 0, -1);
+    opacity: 1; }
+  70% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    opacity: 1; }
+  100% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    opacity: 1; } }
+  .midway-toolbar .toolbar-inner {
+    background-color: #262625;
+    background-image: linear-gradient(to bottom, rgba(49, 49, 47, 0.99), #262625);
+    background-repeat: repeat-x;
+    border-radius: 5px; }
+  .midway-toolbar .buttons .button {
+    display: inline-block;
+    border: 0;
+    color: #fff;
+    height: 44px;
+    line-height: 46px;
+    vertical-align: middle;
+    transition: .1s background-color, .1s border-color, .1s color, .1s fill;
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer; }
+    .midway-toolbar .buttons .button:hover {
+      color: #3498db; }
+    .midway-toolbar .buttons .button .active {
+      color: #2ecc71; }
+    .midway-toolbar .buttons .button:first-child {
+      padding-left: 18px; }
+    .midway-toolbar .buttons .button:last-child {
+      padding-right: 18px; }
+    .midway-toolbar .buttons .button svg path {
+      fill: #ccc; }
+  .midway-toolbar .buttons .separator {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1px;
+    margin: 0 6px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2); }
+  .midway-toolbar .arrow-container {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    clip: rect(10px 20px 20px 0);
+    margin-left: -10px; }
+    .midway-toolbar .arrow-container .arrow {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: #262625;
+      transform: rotate(45deg) scale(0.5); }
+
+/*# sourceMappingURL=midway-toolbar.css.map */
