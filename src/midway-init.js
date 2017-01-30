@@ -12,11 +12,11 @@ MidwayToolbar.registerButton(new MidwayToolbarButton('italic', 'Italic', functio
 }));
 
 MidwayToolbar.registerButton(new MidwayToolbarButton('link', 'Link', function (midway) {
-    if (midway.caretGetNode().prop("nodeName") == 'A') {
+    if (midway.caretGetNode().is('a') || midway.caretGetNode().children().has('a').length > 0) {
         document.execCommand('unlink', false, false);
     } else {
         MidwayToolbar.showLinkInput(midway);
     }
 }, function (midway) {
-    return midway.caretGetNode().prop("nodeName") == 'A';
+    return midway.caretGetNode().is('a') || midway.caretGetNode().children().has('a').length > 0;
 }));
