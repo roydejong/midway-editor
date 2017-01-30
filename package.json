@@ -1,0 +1,23 @@
+{
+  "name": "midway-editor",
+  "version": "0.1.0",
+  "description": "A lightweight WYSIWYG editor inspired by Medium",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roydejong/midway-editor.git"
+  },
+  "author": "Roy de Jong <hello@roydejong.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roydejong/midway-editor/issues"
+  },
+  "homepage": "https://github.com/roydejong/midway-editor#readme",
+  "devDependencies": {
+    "grunt": "v1.0.1",
+    "grunt-contrib-uglify": "v1.0.1"
+  }
+}
