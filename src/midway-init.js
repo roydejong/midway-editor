@@ -12,11 +12,11 @@ MidwayToolbar.registerButton(new MidwayToolbarButton('italic', 'Italic', functio
 }));
 
 MidwayToolbar.registerButton(new MidwayToolbarButton('link', 'Link', function (midway) {
-    if (document.queryCommandState('link')) {
+    if (midway.caretGetNode().prop("nodeName") == 'A') {
         document.execCommand('unlink', false, false);
     } else {
         MidwayToolbar.showLinkInput(midway);
     }
-}, function () {
-    return document.queryCommandState('link');
+}, function (midway) {
+    return midway.caretGetNode().prop("nodeName") == 'A';
 }));
