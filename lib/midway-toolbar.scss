@@ -4,7 +4,7 @@ $colorBackgroundGradientFrom: rgba(49, 49, 47, .99);
 $colorBackground: #262625;
 
 $colorButtonStandard: #fff;
-$colorButtonHover: #3498db;
+$colorButtonHover: rgb(203, 246, 209);
 $colorButtonActive: #2ecc71;
 
 .midway-toolbar {
@@ -88,7 +88,7 @@ $colorButtonActive: #2ecc71;
         color: $colorButtonHover;
       }
 
-      .active {
+      &.active {
         color: $colorButtonActive;
       }
 

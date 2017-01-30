@@ -55,8 +55,8 @@
     padding-right: 8px;
     cursor: pointer; }
     .midway-toolbar .buttons .button:hover {
-      color: #3498db; }
-    .midway-toolbar .buttons .button .active {
+      color: #cbf6d1; }
+    .midway-toolbar .buttons .button.active {
       color: #2ecc71; }
     .midway-toolbar .buttons .button:first-child {
       padding-left: 18px; }
