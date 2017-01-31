@@ -149,7 +149,14 @@ var MidwayToolbar = {
 
             $button.click(function (e) {
                 e.preventDefault();
-                this.apply(midwayEditor, documentSelection);
+
+                var returnValue = this.apply(midwayEditor, documentSelection);
+
+                if (!returnValue) {
+                    // The operation failed, close the toolbar
+                    MidwayToolbar.hide();
+                }
+
                 return false;
             }.bind(button));
 
