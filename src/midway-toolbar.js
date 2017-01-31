@@ -70,7 +70,7 @@ var MidwayToolbar = {
 
         this.$toolbar = $('' +
             '<div class="midway-toolbar virgin-toolbar">' +
-                '<div class="toolbar-inner">' +
+                '<div class="inner">' +
                     '<div class="buttons"></div>' +
                     '<div class="link-input">' +
                         '<input class="link-field" placeholder="Paste or type a link...">' +

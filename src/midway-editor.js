@@ -52,6 +52,8 @@ var MidwayEditor = function ($rootDiv, options) {
             midway.checkSelection();
         });
 
+        MidwayTooltip.register(this.$rootDiv, 'a');
+
         this.$rootDiv.on('mousedown.midway', function (e) {
             var $targetNode = $(e.target);
             var preventingDefault = false;

@@ -1,5 +1,7 @@
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
+$fallbackFonts: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+
 $colorBackgroundGradientFrom: rgba(49, 49, 47, .99);
 $colorBackground: #262625;
 
@@ -7,16 +9,42 @@ $colorButtonStandard: #fff;
 $colorButtonHover: rgb(203, 246, 209);
 $colorButtonActive: #2ecc71;
 
-.midway-toolbar {
+.midway-toolbar, .midway-tooltip {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 
-  display: none;
   position: absolute;
-  z-index: 500;
   top: 0;
   left: 0;
+
+  .inner {
+    background-color: $colorBackground;
+    background-image: linear-gradient(to bottom, $colorBackgroundGradientFrom, $colorBackground);
+    background-repeat: repeat-x;
+    border-radius: 5px;
+  }
+
+  .arrow-container {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    clip: rect(10px 20px 20px 0);
+    margin-left: -10px;
+
+    .arrow {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: $colorBackground;
+      transform: rotate(45deg) scale(.5);
+    }
+  }
+}
+
+.midway-toolbar {
+  display: none;
+  z-index: 500;
 
   // Prevent user selection
   -webkit-touch-callout: none;
@@ -59,13 +87,6 @@ $colorButtonActive: #2ecc71;
         opacity: 1
       }
     }
-  }
-
-  .toolbar-inner {
-    background-color: $colorBackground;
-    background-image: linear-gradient(to bottom, $colorBackgroundGradientFrom, $colorBackground);
-    background-repeat: repeat-x;
-    border-radius: 5px;
   }
 
   .buttons {
@@ -143,7 +164,7 @@ $colorButtonActive: #2ecc71;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+      font-family: $fallbackFonts;
       letter-spacing: 0;
       font-weight: 400;
       font-style: normal;
@@ -166,20 +187,35 @@ $colorButtonActive: #2ecc71;
       cursor: pointer;
     }
   }
+}
+
+.midway-tooltip {
+  z-index: 450;
+  padding-top: 10px;
 
   .arrow-container {
-    position: absolute;
-    bottom: -10px;
+    top: 0px;
     left: 50%;
-    clip: rect(10px 20px 20px 0);
-    margin-left: -10px;
+    clip: auto;
 
     .arrow {
-      display: block;
-      width: 20px;
-      height: 20px;
-      background-color: $colorBackground;
-      transform: rotate(45deg) scale(.5);
+      background-color: $colorBackgroundGradientFrom;
     }
+  }
+
+  .inner {
+    padding: 8px;
+  }
+  .inner, .inner a {
+    position: relative;
+    color: #fff;
+    font-family: $fallbackFonts;
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .inner a {
+    position: relative;
+    cursor: pointer;
+    z-index: 455;
   }
 }
