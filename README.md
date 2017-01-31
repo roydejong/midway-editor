@@ -38,7 +38,7 @@ First, download a ZIP of **[the latest version](https://github.com/roydejong/mid
 
 To use Midway, you need to include the library as well as some required CSS:
 
-    <link rel="stylesheet" href="lib/midway-toolbar.css">
+    <link rel="stylesheet" href="dist/css/midway-toolbar.css">
     <script src="dist/midway-editor.min.js"></script>
     
 #### Enabling the editor
