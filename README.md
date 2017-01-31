@@ -88,7 +88,7 @@ You'll also need Sass if you want to compile the SCSS file. To install Sass:
 
 From the project directory, run `grunt` to bundle and minify the JavaScript into the `dist` directory.
 
-To generate the `*.css` files, run `scss --update .`.
+To generate the `*.css` files, run `scss --update scss:dist/css`.
 
 To ease development, set up a file watcher in your IDE of choice to automate these tasks.
 
