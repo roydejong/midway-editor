@@ -2,9 +2,10 @@ var btnMidwayLink = new MidwayToolbarButton('link', 'Link');
 
 btnMidwayLink.apply = function (midway) {
     if (btnMidwayLink.queryState(midway)) {
-        document.execCommand('unlink', false, false);
+        return document.execCommand('unlink', false, false);
     } else {
         MidwayToolbar.showLinkInput(midway);
+        return true;
     }
 };
 
