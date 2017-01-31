@@ -1,4 +1,5 @@
 var btnMidwayHeadingTwo = new MidwayToolbarButton('h2');
+btnMidwayHeadingTwo.icon = 'header';
 
 btnMidwayHeadingTwo.apply = function () {
     if (btnMidwayHeadingTwo.queryState()) {

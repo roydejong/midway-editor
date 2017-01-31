@@ -145,7 +145,7 @@ var MidwayToolbar = {
             var $button = $('<a />')
                 .addClass('button')
                 .attr('title', button.label)
-                .append('<i class="fa fa-' + button.id + '"></i>');
+                .append('<i class="fa fa-' + button.icon + '"></i>');
 
             $button.click(function (e) {
                 e.preventDefault();

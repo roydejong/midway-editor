@@ -5,6 +5,7 @@
 var MidwayToolbarButton = function (id, label, applyFunction, queryStateFunction) {
     this.id = id;
     this.label = "Button";
+    this.icon = this.id;
 
     if (label) {
         this.label = label;
