@@ -1,4 +1,4 @@
-var btnBlockquote = new MidwayToolbarButton('blockquote');
+var btnBlockquote = new MidwayToolbarButton('blockquote', 'Quote');
 btnBlockquote.icon = 'quote-left';
 
 btnBlockquote.apply = function () {

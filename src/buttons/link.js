@@ -1,4 +1,4 @@
-var btnMidwayLink = new MidwayToolbarButton('link');
+var btnMidwayLink = new MidwayToolbarButton('link', 'Link');
 
 btnMidwayLink.apply = function (midway) {
     if (btnMidwayLink.queryState(midway)) {

@@ -2,7 +2,7 @@
  * A reusable instance of a toolbar button.
  * @constructor
  */
-var MidwayToolbarButton = function (id, label, applyFunction, queryStateFunction) {
+var MidwayToolbarButton = function (id, label) {
     this.id = id;
     this.label = "Button";
     this.icon = this.id;
@@ -21,12 +21,4 @@ var MidwayToolbarButton = function (id, label, applyFunction, queryStateFunction
         // To be implemented by user
         return false;
     };
-
-    if (applyFunction) {
-        this.apply = applyFunction;
-    }
-
-    if (queryStateFunction) {
-        this.queryState = queryStateFunction;
-    }
 };

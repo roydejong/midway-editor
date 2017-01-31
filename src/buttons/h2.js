@@ -1,4 +1,4 @@
-var btnMidwayHeadingTwo = new MidwayToolbarButton('h2');
+var btnMidwayHeadingTwo = new MidwayToolbarButton('h2', 'Big heading');
 btnMidwayHeadingTwo.icon = 'header';
 
 btnMidwayHeadingTwo.apply = function () {

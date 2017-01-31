@@ -1,4 +1,4 @@
-var btnMidwayItalic = new MidwayToolbarButton('italic');
+var btnMidwayItalic = new MidwayToolbarButton('italic', 'Italic');
 
 btnMidwayItalic.apply = function () {
     return document.execCommand('italic');

@@ -1,4 +1,4 @@
-var btnMidwayBold = new MidwayToolbarButton('bold');
+var btnMidwayBold = new MidwayToolbarButton('bold', 'Bold');
 
 btnMidwayBold.apply = function () {
     return document.execCommand('bold');

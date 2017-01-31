@@ -1,4 +1,4 @@
-var btnMidwayHeadingThree = new MidwayToolbarButton('h3');
+var btnMidwayHeadingThree = new MidwayToolbarButton('h3', 'Small heading');
 btnMidwayHeadingThree.icon = 'header';
 btnMidwayHeadingThree.style = 'smaller';
 
