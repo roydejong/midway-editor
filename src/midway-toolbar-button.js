@@ -22,13 +22,9 @@ var MidwayToolbarButton = function (id, label, applyFunction, queryStateFunction
 
     if (applyFunction) {
         this.apply = applyFunction;
-    } else {
-        console.warn('Midway Editor: You must implement MidwayToolbarButton.apply()');
     }
 
     if (queryStateFunction) {
         this.queryState = queryStateFunction;
-    } else {
-        console.warn('Midway Editor: You should implement MidwayToolbarButton.queryState()');
     }
 };

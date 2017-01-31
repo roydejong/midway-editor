@@ -102,7 +102,7 @@ var MidwayToolbar = {
      *
      * This function should only be called when the context actually changes, for performance reasons.
      *
-     * @param midwayEditor MidwayEditor The editor instance opening the toolbar.
+     * @param midwayEditor The editor instance opening the toolbar.
      * @param documentSelection Selection The text Selection that triggered the toolbar.
      * @private
      */
@@ -122,8 +122,25 @@ var MidwayToolbar = {
         // Rebuild buttons (while in test mode, just add all registered buttons, proper config framework is needed later)
         this.$buttonsContainer.html('');
 
-        for (var buttonId in this.availableButtons) {
+        var buttonsConfig = midwayEditor.options.buttons;
+        var buttonItems = buttonsConfig.split(' ');
+
+        for (var i = 0; i < buttonItems.length; i++) {
+            var buttonId = buttonItems[i].trim();
             var button = this.availableButtons[buttonId];
+
+            if (buttonId == '|') {
+                // Separator insert
+                $('<div />')
+                    .addClass('separator')
+                    .appendTo(this.$buttonsContainer);
+                continue;
+            }
+
+            if (!button) {
+                console.warn('Midway Editor: Unsupported button type', buttonId);
+                continue;
+            }
 
             var $button = $('<a />')
                 .addClass('button')
@@ -189,6 +206,11 @@ var MidwayToolbar = {
      * @public
      */
     show: function (midwayEditor, documentSelection) {
+        if (!this.existsInDom) {
+            // First run, prepare the toolbar
+            MidwayToolbar.prepareOnPage();
+        }
+
         var selectionRange = documentSelection.getRangeAt(0);
         var selectionRect = selectionRange.getBoundingClientRect();
 

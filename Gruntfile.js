@@ -7,7 +7,7 @@ module.exports = function(grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: ['src/midway-toolbar.js', 'src/midway-toolbar-button.js', 'src/**/*.js', 'src/midway-init.js'],
+                src: ['src/midway-toolbar.js', 'src/midway-toolbar-button.js', 'src/**/*.js', 'src/buttons/*.js'],
                 dest: 'dist/<%= pkg.name %>.min.js'
             }
         }

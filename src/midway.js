@@ -2,10 +2,11 @@
  * Midway editor static functions.
  */
 var Midway = {
-    edit: function (selector) {
-        MidwayToolbar.prepareOnPage();
-
+    edit: function (selector, options) {
         var $target = $(selector);
+        options = $.extend(options, MidwayOptions);
+
+        console.log(options);
 
         if ($target.length == 0) {
             console.error('Midway Editor: Could not find editable target:', selector);
@@ -16,7 +17,7 @@ var Midway = {
 
         $target.each(function () {
             var $editorDiv = $(this);
-            var midwayEditor = new MidwayEditor($editorDiv);
+            var midwayEditor = new MidwayEditor($editorDiv, options);
 
             newEditors.push(midwayEditor);
 

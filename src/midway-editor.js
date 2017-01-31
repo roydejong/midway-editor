@@ -3,7 +3,14 @@
  *
  * @constructor
  */
-var MidwayEditor = function ($rootDiv) {
+var MidwayEditor = function ($rootDiv, options) {
+    /**
+     * The options this editor has been configured with.
+     *
+     * @var MidwayOptions
+     */
+    this.options = options;
+
     /**
      * The editable jQuery root element for the editor, it is made content editable.
      * Its direct children are the <h1>s and <p>s of this world.
