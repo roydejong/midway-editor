@@ -1,5 +1,6 @@
 var btnMidwayHeadingThree = new MidwayToolbarButton('h3');
 btnMidwayHeadingThree.icon = 'header';
+btnMidwayHeadingThree.style = 'smaller';
 
 btnMidwayHeadingThree.apply = function () {
     if (btnMidwayHeadingThree.queryState()) {

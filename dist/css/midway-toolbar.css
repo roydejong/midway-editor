@@ -62,6 +62,8 @@
       padding-left: 18px; }
     .midway-toolbar .buttons .button:last-child {
       padding-right: 18px; }
+    .midway-toolbar .buttons .button.smaller i {
+      font-size: 75%; }
     .midway-toolbar .buttons .button svg path {
       fill: #ccc; }
   .midway-toolbar .buttons .separator {
