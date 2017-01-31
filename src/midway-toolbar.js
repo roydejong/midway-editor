@@ -117,7 +117,6 @@ var MidwayToolbar = {
         }
 
         this.selectionContext = new MidwayStoredSelection(documentSelection);
-        console.info('Midway Toolbar: Context has just changed to:', this.selectionContext);
 
         // Rebuild buttons (while in test mode, just add all registered buttons, proper config framework is needed later)
         this.$buttonsContainer.html('');
@@ -261,8 +260,6 @@ var MidwayToolbar = {
     },
 
     hide: function () {
-console.error('toolbar hide called');
-
         if (!this.isVisible) {
             return;
         }

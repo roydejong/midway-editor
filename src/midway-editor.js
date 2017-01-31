@@ -231,8 +231,6 @@ var MidwayEditor = function ($rootDiv, options) {
     };
 
     this.restoreSelection = function (storedSelection) {
-        console.log('trying to restore a selection', storedSelection);
-
         var windowSelection = window.getSelection();
         windowSelection.removeAllRanges();
 
