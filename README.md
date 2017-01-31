@@ -4,7 +4,7 @@
 
 <center>
 
-![](http://i.imgur.com/XF1E5iK.png)
+![](http://i.imgur.com/8AyrPT4.png)
 
 **[View demo page](https://roydejong.github.io/midway-editor/)**
 
@@ -18,23 +18,12 @@ It turns an element on your page onto a fully featured post editor.
 
 #### Current features
 
-- Suitable for new post creation, or making an existing post editable 
-- Enforces post semantics with a `<h1>` title above the body 
-- Features a basic text formatting toolbar which opens after selecting text
-- Link insertion via the toolbar
+- Suitable for new post creation, or making an existing post editable. 
+- Enforces post semantics with an `<h1>` title above the body.
+- Features a basic text formatting toolbar which opens after selecting text (bold, italics, headings, blockquote).
+- Link insertion and removal via the toolbar.
 
-#### Coming soon
-
-- Media insertion (images and probably video)
-- More formatting options (headings, lists, blockquotes)
-- Tooltips for links (on hover)
-
-#### Maybe coming soon
-
-- Automatic list creation (ul, ol)
-- Subtitles for posts
-- More config options
-- Better browser compatibility
+:ok_hand: An up-to-date list of features being worked in is available in the [Issue tracker](https://github.com/roydejong/midway-editor/issues).
 
 ## Setup
 
