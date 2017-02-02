@@ -4,9 +4,7 @@
 var Midway = {
     edit: function (selector, options) {
         var $target = $(selector);
-        console.log(options);
         options = $.extend(MidwayOptions, options);
-        console.log(options);
 
         if ($target.length == 0) {
             console.error('Midway Editor: Could not find editable target:', selector);

@@ -85,15 +85,15 @@ var MidwayEditor = function ($rootDiv, options) {
 
             if (e.keyCode == 13) {
                 if (midway.$lastUserNode) {
-                    if (midway.$lastUserNode.hasClass('post-heading')) {
-                        // We are pressing return in a post heading, block browser behavior and skip to the next <p> node
+                    if (midway.$lastUserNode.isNode('h1') || midway.$lastUserNode.isNode('h2') || midway.$lastUserNode.isNode('h3') || midway.$lastUserNode.isNode('blockquote')) {
+                        // We are pressing return in a post heading or blockquote, block browser behavior and skip to the next <p> node
                         e.preventDefault();
 
-                        var $firstP = midway.$lastUserNode.parent().find('p').first();
+                        var $firstP = midway.$lastUserNode.next('p');
                         midway.caretSetPos($firstP, 0);
 
                         return false;
-                    } else if (midway.$lastUserNode.hasClass('post-paragraph') && midway.$lastUserNode.hasClass('ghost-node')) {
+                    } else if (midway.$lastUserNode.isNode('p') && midway.$lastUserNode.hasClass('ghost-node')) {
                         // We are pressing return in the first paragraph and there's no page content yet
                         // Ignore it, we don't want node inseration here
                         e.preventDefault();
@@ -142,10 +142,9 @@ var MidwayEditor = function ($rootDiv, options) {
                 this.caretSetPos($lastNode, $lastNode.text().length);
             }
 
-            if ($lastNode.text().trim().length == 0 && $lastNode.hasClass('post-heading')) {
+            if ($lastNode.text().trim().length == 0 && $lastNode.isNode('h1')) {
                 $lastNode
                     .text('Title')
-                    .addClass('post-heading')
                     .addClass('ghost-node')
                     .removeClass('was-a-ghost');
             }
@@ -202,12 +201,11 @@ var MidwayEditor = function ($rootDiv, options) {
         var makeNodeIntoTitlePlaceholder = function ($node) {
             $node
                 .text('Title')
-                .addClass('post-heading')
                 .addClass('ghost-node')
                 .removeClass('was-a-ghost');
         };
 
-        if (!$firstChild || $firstChild.prop("nodeName") != "H1") {
+        if (!$firstChild || !$firstChild.isNode('h1')) {
             this.$titleNode = $('<h1 />')
                 .prependTo(this.$rootDiv);
 
@@ -226,7 +224,6 @@ var MidwayEditor = function ($rootDiv, options) {
 
             $('<p />')
                 .text('Tell your story...')
-                .addClass('post-paragraph')
                 .addClass('ghost-node')
                 .appendTo(this.$rootDiv);
         }
