@@ -85,12 +85,19 @@ var MidwayEditor = function ($rootDiv, options) {
 
             if (e.keyCode == 13) {
                 if (midway.$lastUserNode) {
-                    if (midway.$lastUserNode.isNode('h1') || midway.$lastUserNode.isNode('h2') || midway.$lastUserNode.isNode('h3') || midway.$lastUserNode.isNode('blockquote')) {
+                    if (midway.$lastUserNode.isNode(['h1', 'h2', 'h3', 'blockquote'])) {
                         // We are pressing return in a post heading or blockquote, block browser behavior and skip to the next <p> node
                         e.preventDefault();
 
-                        var $firstP = midway.$lastUserNode.next('p');
-                        midway.caretSetPos($firstP, 0);
+                        var $nextEditorElement = midway.$lastUserNode.next();
+
+                        if ($nextEditorElement.length == 0) {
+                            // There is no next node to jump into, so create a new paragraph
+                            $nextEditorElement = $('<p />');
+                            $nextEditorElement.appendTo(midway.$rootDiv);
+                        }
+
+                        midway.caretSetPos($nextEditorElement, 0);
 
                         return false;
                     } else if (midway.$lastUserNode.isNode('p') && midway.$lastUserNode.hasClass('ghost-node')) {
