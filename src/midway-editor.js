@@ -98,7 +98,6 @@ var MidwayEditor = function ($rootDiv, options) {
                         }
 
                         midway.caretSetPos($nextEditorElement, 0);
-
                         return false;
                     } else if (midway.$lastUserNode.isNode('p') && midway.$lastUserNode.hasClass('ghost-node')) {
                         // We are pressing return in the first paragraph and there's no page content yet
@@ -109,18 +108,22 @@ var MidwayEditor = function ($rootDiv, options) {
                 }
             } else if ((e.keyCode == 8 || e.keyCode == 46) && midway.$lastUserNode && midway.$lastUserNode.hasClass('ghost-node')) {
                 // We are pressing backspace or delete on an empty ghost node
-                // Ignore it, we don't want unexpected behavior here
+                // Jump back to prev element if it is also a ghost node, otherwise do nothing
                 e.preventDefault();
+
+                var $prevEditorElement = midway.$lastUserNode.prev();
+                
+                if ($prevEditorElement.length > 0) {
+                    midway.caretSetPos($prevEditorElement, $prevEditorElement.text().length);
+                }
+
                 return false;
-            } else if (midway.keyCodeIsInput(e.keyCode)) {
-                // Only fire beforeInput event if the key pressed actually seems to be input
-                midway.beforeInput();
             }
 
             midway.checkCaret();
         });
 
-        this.$rootDiv.on('input.midway', function () {
+        this.$rootDiv.on('input.midway', function (e) {
             midway.$nextUserNode = null;
             midway.contentChanging();
             midway.checkCaret();
@@ -128,58 +131,26 @@ var MidwayEditor = function ($rootDiv, options) {
 
         this.$rootDiv.on('keyup.midway', function () {
             midway.$nextUserNode = null;
+            midway.contentChanging();
             midway.checkCaret();
         });
     };
 
-    this.keyCodeIsInput = function (keyCode) {
-        return ((keyCode >= 48 && keyCode <= 90) || (keyCode >= 186));
-    };
-
     this.contentChanging = function () {
-        if (this.$lastUserNode) {
-            var $lastNode = this.$lastUserNode;
-            var lastNode = $lastNode[0];
-            var lastNodeHtml = $lastNode.html();
-
-            if ((noZwHtml = lastNodeHtml.replace(/\u200B/g, '')) != lastNodeHtml) {
-                // kill remaining zero width chars at this point but maintain caret position
-                // (this is part of the hack to make placeholders work)
-                $lastNode.html(noZwHtml);
-                this.caretSetPos($lastNode, $lastNode.text().length);
-            }
-
-            if ($lastNode.text().trim().length == 0 && $lastNode.isNode('h1')) {
-                $lastNode
-                    .text('Title')
-                    .addClass('ghost-node')
-                    .removeClass('was-a-ghost');
-            }
-        }
-    };
-
-    this.beforeInput = function () {
-        var $caretNode = this.caretGetNode();
-
-        if ($caretNode.hasClass('ghost-node')) {
-            $caretNode
-                .html('&#8203;') // zero width character to prevent the node from collapsing in height
-                .removeClass('ghost-node')
-                .addClass('was-a-ghost');
-
-            this.caretSetPos($caretNode, 0);
+        if (this.$lastUserNode && this.$lastUserNode.length > 0) {
+            MidwayHtmlCleanup.cleanNode(this, this.$lastUserNode);
         }
     };
 
     this.checkCaret = function () {
         var $caretNode = this.$nextUserNode ? this.$nextUserNode : this.caretGetNode();
 
+        this.checkPlaceholders();
+
         if ($caretNode.hasClass('ghost-node')) {
             // This is a "ghost node" (a placeholder), so behave like a placeholder and keep the caret at pos-zero
             this.caretSetPos($caretNode, 0);
         }
-
-        this.checkPlaceholders();
 
         // Run the selection code async to prevent weird timing issues with window.getSelection()
         window.setTimeout(function () {
@@ -205,32 +176,27 @@ var MidwayEditor = function ($rootDiv, options) {
         // Check if a title div exists on top of the post, and create it if needed
         var $firstChild = this.$rootDiv.children().first();
 
-        var makeNodeIntoTitlePlaceholder = function ($node) {
-            $node
-                .text('Title')
-                .addClass('ghost-node')
-                .removeClass('was-a-ghost');
-        };
-
         if (!$firstChild || !$firstChild.isNode('h1')) {
             this.$titleNode = $('<h1 />')
                 .prependTo(this.$rootDiv);
 
-            makeNodeIntoTitlePlaceholder(this.$titleNode);
-        } else {
-            this.$titleNode = $firstChild;
+            $firstChild = this.$titleNode;
         }
 
+        MidwayHtmlCleanup.cleanNode(this, $firstChild);
+
         // Check that at least one <p> child exists to begin containing body text, create if needed
-        var $anyPs = this.$rootDiv.find('p');
         var $anyNonEmptyPs = this.$rootDiv.find('p').not(':empty');
 
         if ($anyNonEmptyPs.length == 0) {
             //
             this.$rootDiv.find('p').remove();
 
+            var P_PLACEHOLDER_TEXT = 'Tell your story...';
+
             $('<p />')
-                .text('Tell your story...')
+                .text(P_PLACEHOLDER_TEXT)
+                .data('placeholder', P_PLACEHOLDER_TEXT)
                 .addClass('ghost-node')
                 .appendTo(this.$rootDiv);
         }
@@ -295,13 +261,20 @@ var MidwayEditor = function ($rootDiv, options) {
             return false;
         }
 
-        var el = this.$rootDiv;
-        var range = document.createRange();
         var sel = window.getSelection();
-        range.setStart($targetNode[0], position);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
+
+        if (position == 0) {
+            var range = document.createRange();
+
+            range.setStart($targetNode[0], 0);
+            range.collapse(true);
+
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else {
+            sel.collapse($targetNode[0], position);
+        }
+
         return true;
     };
 
