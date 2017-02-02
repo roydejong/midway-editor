@@ -94,6 +94,7 @@ var MidwayEditor = function ($rootDiv, options) {
                         if ($nextEditorElement.length == 0) {
                             // There is no next node to jump into, so create a new paragraph
                             $nextEditorElement = $('<p />');
+                            $nextEditorElement.append('&nbsp;');
                             $nextEditorElement.appendTo(midway.$rootDiv);
                         }
 
