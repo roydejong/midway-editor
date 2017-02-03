@@ -135,6 +135,11 @@ var MidwayEditor = function ($rootDiv, options) {
             midway.contentChanging();
             midway.checkCaret();
         });
+
+        // If the editor already has content, clean it up now
+        this.$rootDiv.children().each(function () {
+            MidwayHtmlCleanup.cleanNode(midway, $(this));
+        });
     };
 
     this.contentChanging = function () {
