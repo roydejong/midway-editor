@@ -33,5 +33,14 @@ var MidwayHtmlCleanup = {
                 }
             }
         }
+
+        // Destroy <span> elements created by browsers, this prevents a lot of unwanted contenteditable behavior
+        $node.find('span').each(function () {
+            var $span = $(this);
+            $span.replaceWith($span.text());
+        });
+
+        // Kill any of content editable's little "style" hacks
+        $node.find('*').attr('style', '');
     }
 };
