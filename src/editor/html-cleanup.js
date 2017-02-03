@@ -40,7 +40,18 @@ var MidwayHtmlCleanup = {
             $span.replaceWith($span.text());
         });
 
-        // Kill any of content editable's little "style" hacks
+        // Kill any of content editable's little "style" hacks on our children
         $node.find('*').attr('style', '');
+
+        // Are we a direct child of the editor? We can only be <h1>, <h2>, <h3>, <blockquote>, or <p>
+        var isDirectChild = $node.parent().is(midway.$rootDiv);
+
+        if (isDirectChild && !$node.isNode(['h1', 'h2', 'h3', 'blockquote', 'p'])) {
+            // Convert whatever this node might be to a <p>
+            var $newNode = $('<p />')
+                .html($node.html());
+
+            $node.replaceWith($newNode);
+        }
     }
 };
