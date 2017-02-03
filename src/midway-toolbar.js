@@ -84,6 +84,12 @@ var MidwayToolbar = {
 
         this.$toolbar.appendTo($('body'));
 
+        this.$toolbar.on('mousedown', '*', function (e) {
+            // Prevent mousedown event to avoid "clicking through" the toolbar
+            e.preventDefault();
+            return false;
+        });
+
         this.$buttonsContainer = this.$toolbar.find('.buttons');
 
         this.$linkInputContainer = this.$toolbar.find('.link-input');
