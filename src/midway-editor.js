@@ -140,6 +140,9 @@ var MidwayEditor = function ($rootDiv, options) {
         this.$rootDiv.children().each(function () {
             MidwayHtmlCleanup.cleanNode(midway, $(this));
         });
+
+        // Focus on the editor initially
+        this.$rootDiv.click().focus();
     };
 
     this.contentChanging = function () {
